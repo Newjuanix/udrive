@@ -18,7 +18,7 @@ const Business = () => {
             <div className="text-center space-y-6 max-w-3xl mx-auto">
               <h1 className="text-4xl font-bold text-gray-900">UDrive para Empresas</h1>
               <p className="text-xl text-gray-600">
-                Soluciones de movilidad empresarial para optimizar el desplazamiento de tu equipo
+                Replanteando nuestra vida!, contactanos empresas
               </p>
               <div className="inline-block">
                 <Button className="bg-orange-500 hover:bg-orange-600 text-white text-lg py-6 px-8 rounded-lg">
