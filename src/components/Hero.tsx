@@ -2,10 +2,18 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import Map from '@/components/Map';
+import { Input } from '@/components/ui/input';
 
 const Hero = () => {
   const [activeTab, setActiveTab] = useState('ride');
+  const [pickup, setPickup] = useState('');
+  const [destination, setDestination] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Aquí iría la lógica para solicitar un viaje
+    console.log('Solicitud de viaje:', { pickup, destination });
+  };
 
   return (
     <div className="relative bg-white overflow-hidden">
@@ -28,7 +36,27 @@ const Hero = () => {
                 </TabsList>
                 
                 <TabsContent value="ride" className="space-y-4">
-                  <Map />
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <Input
+                      placeholder="Ingresa la ubicación de recogida"
+                      className="h-12"
+                      value={pickup}
+                      onChange={(e) => setPickup(e.target.value)}
+                    />
+                    <Input
+                      placeholder="Ingresa tu destino"
+                      className="h-12"
+                      value={destination}
+                      onChange={(e) => setDestination(e.target.value)}
+                    />
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="bg-orange-500 hover:bg-orange-600 text-white w-full h-12 text-base"
+                    >
+                      Solicitar viaje ahora
+                    </Button>
+                  </form>
                 </TabsContent>
                 
                 <TabsContent value="drive" className="space-y-4">
@@ -45,9 +73,11 @@ const Hero = () => {
           </div>
           
           <div className="hidden md:flex items-center justify-center">
-            <div className="relative w-full h-[400px] rounded-lg overflow-hidden shadow-xl">
-              <Map />
-            </div>
+            <img 
+              src="/lovable-uploads/9f249b32-bf14-4ae7-a0d9-855ce374ec90.png" 
+              alt="UDrive" 
+              className="w-full max-w-md rounded-lg shadow-xl"
+            />
           </div>
         </div>
       </div>
