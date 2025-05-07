@@ -31,7 +31,7 @@ const AboutUs = () => {
                 UDrive nació de una idea simple pero poderosa: ¿qué pasaría si los estudiantes pudieran compartir viajes en su camino a la universidad, ahorrando dinero y reduciendo la contaminación?
               </p>
               <p className="text-lg text-gray-600">
-                Fundada en 2023 por un grupo de estudiantes universitarios frustrados por los altos costos de transporte y la ineficiencia de tener múltiples vehículos dirigiéndose al mismo destino, UDrive se ha convertido en una solución innovadora para la movilidad urbana centrada en las comunidades estudiantiles.
+                Fundada en 2025 por un grupo de estudiantes universitarios frustrados por los altos costos de transporte y la ineficiencia de tener múltiples vehículos dirigiéndose al mismo destino, UDrive se ha convertido en una solución innovadora para la movilidad urbana centrada en las comunidades estudiantiles.
               </p>
               <p className="text-lg text-gray-600">
                 Nuestra plataforma conecta a conductores con estudiantes que comparten rutas similares, optimizando cada viaje para maximizar la eficiencia y minimizar los costos y el impacto ambiental.
