@@ -1,18 +1,60 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
+
+// Add Google Maps type definitions
+declare global {
+  interface Window {
+    google: any;
+  }
+}
 
 const Hero = () => {
   const [activeTab, setActiveTab] = useState('ride');
   const [pickup, setPickup] = useState('');
   const [destination, setDestination] = useState('');
+  const mapRef = useRef<HTMLDivElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Aquí iría la lógica para solicitar un viaje
     console.log('Solicitud de viaje:', { pickup, destination });
+  };
+
+  useEffect(() => {
+    // Cargar la API de Google Maps
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=&libraries=places`;
+    script.async = true;
+    script.defer = true;
+    script.onload = initMap;
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
+  const initMap = () => {
+    if (mapRef.current && window.google) {
+      // Inicializar el mapa centrado en Bogotá
+      const bogota = { lat: 4.6097, lng: -74.0817 }; // Coordenadas de Bogotá
+      const mapInstance = new window.google.maps.Map(mapRef.current, {
+        center: bogota,
+        zoom: 13,
+        mapTypeControl: false,
+        streetViewControl: false,
+      });
+
+      // Añadir un marcador en el centro de Bogotá
+      new window.google.maps.Marker({
+        position: bogota,
+        map: mapInstance,
+        title: "Bogotá, Colombia"
+      });
+    }
   };
 
   return (
@@ -73,11 +115,13 @@ const Hero = () => {
           </div>
           
           <div className="hidden md:flex items-center justify-center">
-            <img 
-              src="/lovable-uploads/9f249b32-bf14-4ae7-a0d9-855ce374ec90.png" 
-              alt="UDrive" 
-              className="w-full max-w-md rounded-lg shadow-xl"
-            />
+            <div 
+              ref={mapRef} 
+              className="w-full h-[400px] rounded-lg shadow-xl"
+            ></div>
+            <div className="text-xs text-gray-500 text-center mt-2">
+              <p>Para visualizar el mapa completo necesita una API key de Google Maps.</p>
+            </div>
           </div>
         </div>
       </div>
