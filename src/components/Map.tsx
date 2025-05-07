@@ -3,13 +3,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-// Add Google Maps type definitions
-declare global {
-  interface Window {
-    google: any;
-  }
-}
-
 const Map = ({ onPickupChange, onDestinationChange }: { 
   onPickupChange?: (address: string) => void, 
   onDestinationChange?: (address: string) => void 
