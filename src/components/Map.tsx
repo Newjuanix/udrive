@@ -3,14 +3,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
+// Add Google Maps type definitions
+declare global {
+  interface Window {
+    google: any;
+  }
+}
+
 const Map = ({ onPickupChange, onDestinationChange }: { 
   onPickupChange?: (address: string) => void, 
   onDestinationChange?: (address: string) => void 
 }) => {
   const mapRef = useRef<HTMLDivElement>(null);
-  const [map, setMap] = useState<google.maps.Map | null>(null);
-  const [directionsService, setDirectionsService] = useState<google.maps.DirectionsService | null>(null);
-  const [directionsRenderer, setDirectionsRenderer] = useState<google.maps.DirectionsRenderer | null>(null);
+  const [map, setMap] = useState<any | null>(null);
+  const [directionsService, setDirectionsService] = useState<any | null>(null);
+  const [directionsRenderer, setDirectionsRenderer] = useState<any | null>(null);
   const [pickup, setPickup] = useState('');
   const [destination, setDestination] = useState('');
 
@@ -29,9 +36,9 @@ const Map = ({ onPickupChange, onDestinationChange }: {
   }, []);
 
   const initMap = () => {
-    if (mapRef.current) {
+    if (mapRef.current && window.google) {
       // Inicializar el mapa
-      const mapInstance = new google.maps.Map(mapRef.current, {
+      const mapInstance = new window.google.maps.Map(mapRef.current, {
         center: { lat: 19.4326, lng: -99.1332 }, // Centro en Ciudad de México
         zoom: 12,
         mapTypeControl: false,
@@ -40,8 +47,8 @@ const Map = ({ onPickupChange, onDestinationChange }: {
       setMap(mapInstance);
 
       // Inicializar servicios de direcciones
-      setDirectionsService(new google.maps.DirectionsService());
-      const rendererInstance = new google.maps.DirectionsRenderer({
+      setDirectionsService(new window.google.maps.DirectionsService());
+      const rendererInstance = new window.google.maps.DirectionsRenderer({
         map: mapInstance,
         suppressMarkers: false,
       });
@@ -56,10 +63,10 @@ const Map = ({ onPickupChange, onDestinationChange }: {
       {
         origin: pickup,
         destination: destination,
-        travelMode: google.maps.TravelMode.DRIVING,
+        travelMode: window.google?.maps?.TravelMode?.DRIVING,
       },
-      (response, status) => {
-        if (status === google.maps.DirectionsStatus.OK && response) {
+      (response: any, status: any) => {
+        if (status === window.google?.maps?.DirectionsStatus?.OK && response) {
           directionsRenderer.setDirections(response);
         } else {
           console.error(`Error al calcular la ruta: ${status}`);

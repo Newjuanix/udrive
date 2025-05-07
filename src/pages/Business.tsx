@@ -2,7 +2,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { BriefcaseBusiness, Building, BuildingTwo } from "lucide-react";
+import { BriefcaseBusiness, Building, Building2 } from "lucide-react";
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -82,7 +82,7 @@ const Business = () => {
 
               <Card className="hover-lift">
                 <CardHeader>
-                  <BuildingTwo className="h-8 w-8 text-orange-500 mb-2" />
+                  <Building2 className="h-8 w-8 text-orange-500 mb-2" />
                   <CardTitle>Eventos empresariales</CardTitle>
                 </CardHeader>
                 <CardContent>
