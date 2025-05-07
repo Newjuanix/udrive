@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Input } from '@/components/ui/input';
+import Map from '@/components/Map';
 
 const Hero = () => {
   const [activeTab, setActiveTab] = useState('ride');
@@ -28,13 +28,7 @@ const Hero = () => {
                 </TabsList>
                 
                 <TabsContent value="ride" className="space-y-4">
-                  <div className="flex flex-col gap-4">
-                    <Input placeholder="Ingresa la ubicación de recogida" className="h-12" />
-                    <Input placeholder="Ingresa tu destino" className="h-12" />
-                    <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white w-full h-12 text-base">
-                      Solicitar viaje ahora
-                    </Button>
-                  </div>
+                  <Map />
                 </TabsContent>
                 
                 <TabsContent value="drive" className="space-y-4">
@@ -51,11 +45,8 @@ const Hero = () => {
           </div>
           
           <div className="hidden md:flex items-center justify-center">
-            <div className="relative w-full h-[400px] rounded-lg bg-gradient-to-br from-orange-100 to-orange-200 overflow-hidden shadow-xl">
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1488590528505-98d2b5aba04b')] bg-cover bg-center opacity-75 mix-blend-overlay"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/50 to-transparent text-white">
-                <p className="text-2xl font-semibold">UDrive te lleva a donde necesites ir</p>
-              </div>
+            <div className="relative w-full h-[400px] rounded-lg overflow-hidden shadow-xl">
+              <Map />
             </div>
           </div>
         </div>

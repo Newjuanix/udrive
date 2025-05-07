@@ -32,6 +32,9 @@ const Navbar = () => {
             <Link to="/safety" className="text-gray-700 hover:text-orange-500 font-medium">
               Seguridad
             </Link>
+            <Link to="/about" className="text-gray-700 hover:text-orange-500 font-medium">
+              Sobre nosotros
+            </Link>
           </div>
 
           {/* Actions */}
@@ -86,6 +89,9 @@ const Navbar = () => {
             </Link>
             <Link to="/safety" className="text-gray-700 hover:text-orange-500 font-medium py-2">
               Seguridad
+            </Link>
+            <Link to="/about" className="text-gray-700 hover:text-orange-500 font-medium py-2">
+              Sobre nosotros
             </Link>
             <Link to="/help" className="text-gray-700 hover:text-orange-500 font-medium py-2">
               Ayuda
